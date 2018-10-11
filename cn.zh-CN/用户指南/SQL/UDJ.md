@@ -371,7 +371,7 @@ public void join(Record key, Iterator<Record> left, Iterator<Record> right, Yiel
 SQL语句中，只需要对前面的例子稍作修改，在UDJ语句尾部增加SORT BY子句，指定UDJ组内左右表分别都按照各自的time字段进行排序（注意：UDJ代码修改后需要更新UDJ对应的jar包）：
 
 ```
-SELECT r.user_id, from_unixtime(time/1000) as time, content FROM (
+SELECT r.user_id, from_unixtime(r.time/1000) as time, r.content FROM (
   SELECT user_id, time as time, pay_info FROM payment
 ) p JOIN (
   SELECT user_id, time as time, content FROM user_client_log
